@@ -37,6 +37,7 @@
             btnActualizar = new Button();
             btnEliminar = new Button();
             cmbProductos = new ComboBox();
+            btnCerrar = new Button();  // Nuevo botón de cerrar
             ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
             SuspendLayout();
             // 
@@ -142,10 +143,24 @@
             cmbProductos.TabIndex = 8;
             cmbProductos.SelectedIndexChanged += cmbProductos_SelectedIndexChanged;
             // 
+            // btnCerrar
+            // 
+            btnCerrar.BackColor = Color.Crimson;
+            btnCerrar.FlatStyle = FlatStyle.Flat;
+            btnCerrar.ForeColor = Color.White;
+            btnCerrar.Location = new Point(350, 310);  // Posición del botón Cerrar
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.Size = new Size(75, 30);
+            btnCerrar.TabIndex = 9;
+            btnCerrar.Text = "Cerrar";
+            btnCerrar.UseVisualStyleBackColor = false;
+            btnCerrar.Click += btnCerrar_Click;  // Evento Click para cerrar
+            // 
             // Form1
             // 
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(484, 361);
+            Controls.Add(btnCerrar);  // Agregar el botón Cerrar a los controles
             Controls.Add(cmbProductos);
             Controls.Add(btnEliminar);
             Controls.Add(btnActualizar);
@@ -174,32 +189,6 @@
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.ComboBox cmbProductos;  // Variable ComboBox agregada
-
-        // Evento para cambiar el color del botón al pasar el ratón
-        private void Button_MouseEnter(object sender, EventArgs e)
-        {
-            var btn = sender as Button;
-            if (btn != null)
-            {
-                btn.BackColor = System.Drawing.Color.LightGray;
-            }
-        }
-
-        // Evento para restaurar el color del botón al quitar el ratón
-        private void Button_MouseLeave(object sender, EventArgs e)
-        {
-            var btn = sender as Button;
-            if (btn != null)
-            {
-                if (btn.Name == "btnCrear")
-                    btn.BackColor = System.Drawing.Color.SkyBlue;
-                if (btn.Name == "btnLeer")
-                    btn.BackColor = System.Drawing.Color.LightGreen;
-                if (btn.Name == "btnActualizar")
-                    btn.BackColor = System.Drawing.Color.Orange;
-                if (btn.Name == "btnEliminar")
-                    btn.BackColor = System.Drawing.Color.Crimson;
-            }
-        }
+        private System.Windows.Forms.Button btnCerrar;  // Nuevo botón Cerrar
     }
 }

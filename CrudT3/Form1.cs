@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;  // Necesario para el manejo de colores
 using System.Windows.Forms;
 using T3_Crud.Logic;
 using T3_Crud.Models;
@@ -14,6 +15,22 @@ namespace T3_Crud
             InitializeComponent();
             crud = new Crud();
             CargarProductosComboBox();
+
+            // Asignar eventos de mouse
+            btnCrear.MouseEnter += Button_MouseEnter;
+            btnCrear.MouseLeave += Button_MouseLeave;
+
+            btnLeer.MouseEnter += Button_MouseEnter;
+            btnLeer.MouseLeave += Button_MouseLeave;
+
+            btnActualizar.MouseEnter += Button_MouseEnter;
+            btnActualizar.MouseLeave += Button_MouseLeave;
+
+            btnEliminar.MouseEnter += Button_MouseEnter;
+            btnEliminar.MouseLeave += Button_MouseLeave;
+
+            btnCerrar.MouseEnter += Button_MouseEnter;
+            btnCerrar.MouseLeave += Button_MouseLeave;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -88,6 +105,12 @@ namespace T3_Crud
             }
         }
 
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            // Cerrar la aplicación
+            this.Close();
+        }
+
         private void ActualizarDataGridView()
         {
             dgvProductos.DataSource = null;
@@ -119,6 +142,28 @@ namespace T3_Crud
                 txtId.Text = producto.Id.ToString();
                 txtNombre.Text = producto.Nombre;
                 txtPrecio.Text = producto.Precio.ToString("0.00");
+            }
+        }
+
+        // Métodos para manejar los eventos MouseEnter y MouseLeave
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                button.BackColor = Color.LightGray;  // Cambiar el color de fondo cuando el ratón entra
+            }
+        }
+
+        private void Button_MouseLeave(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                // Restaurar color original
+                if (button == btnCrear) button.BackColor = Color.SkyBlue;
+                if (button == btnLeer) button.BackColor = Color.LightGreen;
+                if (button == btnActualizar) button.BackColor = Color.Orange;
+                if (button == btnEliminar) button.BackColor = Color.Crimson;
+                if (button == btnCerrar) button.BackColor = Color.Gray;  // Color original para btnCerrar
             }
         }
     }
